@@ -1,0 +1,67 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="{% static 'survey/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="cs.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light" style="background-color: #343a40;">
+            <div class="container">
+               <h4 style="color:#fff; ">Welcome {{request.user.username}}</h4>
+            </div>
+</nav>
+    </header>
+    <div class="container"><br>
+        
+        <h2><a href="myadmin"><button type="button" class="btn btn-dark">Survey</button>
+        <a href="test"><button type="button" class="btn btn-dark">Survey Details</button></a>
+      <a href="testall"><button type="button" class="btn btn-dark">User Details</button></a>  </h2>
+        <hr>
+
+         <table class="table" style="width: 800px; text-align: center;">
+              {% for question in questions %}
+            <thead>
+
+
+
+           
+                <tr>
+                  
+                    <th colspan="2">{{ question.content }}</th>
+
+                   
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for answer in answers %}
+                   {% ifequal question.id answer.Question_id.id %}
+
+                    <tr>
+                   
+                    <td style="text-align: center;">{{ answer.user_id.username}}</td>
+                    <td>{{ answer.rate }}</td>
+                    
+                   </tr>
+                    {% endifequal %}
+
+                {% endfor %}
+
+            </tbody>
+            {%endfor%}
+        </table>
+        
+    </div>
+
+</body>
+</html>
+
+
