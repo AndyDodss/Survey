@@ -34,6 +34,7 @@
             </thead>
             <tbody>
                 {% for question in questions %}
+                    {% ifequal question.is_visible True %}
 
                     <tr>
                     <td>{{ question.name }}</td>
@@ -43,6 +44,7 @@
                         <a class="btn btn-danger" href="/delete/{{ question.id }}">Delete</a>
                     </td>
                 </tr>
+                    {% endifequal %}
 
                 {% endfor %}
 
