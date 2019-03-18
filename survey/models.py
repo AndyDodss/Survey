@@ -4,13 +4,14 @@ from django.contrib.auth.models import User
 class Ask(models.Model):
     name = models.CharField(max_length=150)
     content = models.TextField()
+    is_visible=models.BooleanField()
 
 
     
    
 
     def __str__(self):
-        return self.name
+        return "SurvBetter"
 
 class Ans(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,default=None)
@@ -20,5 +21,5 @@ class Ans(models.Model):
    
 
     def __str__(self):
-        return "koko"
+        return "SurvBetter"
 

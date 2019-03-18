@@ -85,7 +85,7 @@ def create(request):
     print(request.POST)
     title = request.GET['name']
     content = request.GET['content']
-    question_details = Ask(name=title, content=content)
+    question_details = Ask(name=title, content=content,is_visible=True)
     question_details.save()
     return redirect('/myadmin')
 
@@ -95,7 +95,8 @@ def add_question(request):
 
 def delete(request, id):
     questions = Ask.objects.get(pk=id)
-    questions.delete()
+    questions.is_visible=False
+    questions.save()
     return redirect('/myadmin')
 
 
